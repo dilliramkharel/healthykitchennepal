@@ -18,8 +18,9 @@ export function Hero() {
         height={1104}
         className="absolute inset-0 -z-20 size-full object-cover"
       />
-      <div className="hero-gradient absolute inset-0 -z-10 opacity-45" />
-      <div className="absolute inset-0 -z-10 bg-foreground/45" />
+      <div className="hero-gradient absolute inset-0 -z-10 opacity-25" />
+      <div className="absolute inset-0 -z-10 bg-foreground/35" />
+
 
 
 
