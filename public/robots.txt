@@ -12,3 +12,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://healthykitchennepal.com/wp-sitemap.xml
+Sitemap: https://healthykitchennepal.com/sitemap.xml

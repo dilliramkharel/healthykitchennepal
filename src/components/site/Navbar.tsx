@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Leaf, Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "Guides", href: "#guides" },
-  { label: "Detox", href: "#detox" },
-  { label: "Community", href: "#community" },
-  { label: "Newsletter", href: "#newsletter" },
+  { label: "Guides", href: "/#guides" },
+  { label: "Detox", href: "/#detox" },
+  { label: "Community", href: "/#community" },
+  { label: "Newsletter", href: "/#newsletter" },
+  { label: "Blog", href: "/blog", isRoute: true },
 ];
 
 export function Navbar() {
@@ -45,16 +47,29 @@ export function Navbar() {
 
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className={cn(
-                "relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full",
-                scrolled ? "text-foreground hover:text-primary" : "text-primary-foreground/90",
-              )}
-            >
-              {l.label}
-            </a>
+            l.isRoute ? (
+              <Link
+                key={l.label}
+                to={l.href}
+                className={cn(
+                  "relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full",
+                  scrolled ? "text-foreground hover:text-primary" : "text-primary-foreground/90",
+                )}
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.label}
+                href={l.href}
+                className={cn(
+                  "relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full",
+                  scrolled ? "text-foreground hover:text-primary" : "text-primary-foreground/90",
+                )}
+              >
+                {l.label}
+              </a>
+            )
           ))}
           <Button variant={scrolled ? "default" : "heroOutline"} size="default" asChild>
             <a href="#community">Join the Community</a>
@@ -78,14 +93,24 @@ export function Navbar() {
         <div className="mx-5 mb-4 rounded-2xl bg-card p-4 shadow-lift md:hidden">
           <ul className="flex flex-col">
             {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-primary-soft hover:text-primary"
-                >
-                  {l.label}
-                </a>
+              <li key={l.label}>
+                {l.isRoute ? (
+                  <Link
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-primary-soft hover:text-primary"
+                  >
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-primary-soft hover:text-primary"
+                  >
+                    {l.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
