@@ -8,7 +8,7 @@ This document outlines the complete step-by-step workflow to connect your reposi
 
 ```mermaid
 graph LR
-    Dev[Local Development / IDE] -->|git push| GitHub[GitHub Repository: pkbasnet7153/healthy-kitchen-nepal]
+    Dev[Local Development / IDE] -->|git push| GitHub[GitHub Repository: dilliramkharel/healthykitchennepal]
     GitHub -->|Auto Webhook Trigger| Vercel[Vercel CI/CD Build Engine]
     Vercel -->|Nitro Build: .vercel/output| Edge[Vercel Serverless & CDN Edge]
     Edge -->|REST API Requests| WP[WordPress Backend: healthykitchennepal.xyz]
@@ -16,6 +16,7 @@ graph LR
     Edge -->|Blazing Fast SSR Webpage| User[Global Visitors / Readers]
 ```
 
+- **Live URL**: `https://healthykitchennepal.vercel.app`
 - **Frontend Framework**: TanStack Start (React 19 + TanStack Router + Vite + Nitro).
 - **Hosting Platform**: Vercel (Edge CDN + Serverless Functions via Nitro `preset: 'vercel'`).
 - **CMS Backend**: WordPress REST API at `https://healthykitchennepal.xyz/wp-json/wp/v2`.
@@ -24,20 +25,22 @@ graph LR
 
 ## 2. Phase 1: Commit & Push Local Changes to GitHub
 
-Your repository already has `origin` set to:
-`https://github.com/pkbasnet7153/healthy-kitchen-nepal.git`
+Your repository has `origin` configured to:
+`https://github.com/dilliramkharel/healthykitchennepal.git`
 
-Run the following terminal commands to stage, commit, and push the latest fixes:
+*(Your personal backup remote is also saved under `personal`: `https://github.com/pkbasnet7153/healthy-kitchen-nepal.git`)*
+
+Run the following terminal commands to stage, commit, and push updates:
 
 ```bash
 # 1. Review changed files
 git status
 
-# 2. Stage all updated files (including image fallback and Vercel build configs)
+# 2. Stage all updated files
 git add .
 
 # 3. Commit the changes
-git commit -m "feat: configure vercel deployment, fix post image fallbacks, and update blog routes"
+git commit -m "chore: describe your updates here"
 
 # 4. Push to GitHub main branch
 git push origin main
@@ -45,19 +48,12 @@ git push origin main
 
 ---
 
-## 3. Phase 2: Connect GitHub Repository to Vercel (One-Time Setup)
+## 3. Phase 2: Connect GitHub Repository to Vercel (Completed)
 
-Follow these steps in your browser:
-
-1. **Sign Up / Log In to Vercel**:
-   - Go to [vercel.com](https://vercel.com) and click **Log In** or **Sign Up**.
-   - Choose **Continue with GitHub** to link your GitHub account.
-
-2. **Import the Project**:
-   - In the Vercel Dashboard, click **Add New...** -> **Project**.
-   - Under **Import Git Repository**, find `pkbasnet7153/healthy-kitchen-nepal` and click **Import**.
-
-3. **Configure Project Settings**:
+Your repository is now connected to Vercel:
+- **Project**: `healthykitchennepal`
+- **Live Production URL**: [https://healthykitchennepal.vercel.app](https://healthykitchennepal.vercel.app)
+- **Deployment Strategy**: Automatic CI/CD on every push to `origin/main`.
    - **Framework Preset**: TanStack Start (detected automatically via `vercel.json`).
    - **Root Directory**: `./` (default).
    - **Build Command**: `npm run build` (default).
