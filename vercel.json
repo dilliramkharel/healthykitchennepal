@@ -1,6 +1,23 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "tanstack-start",
+  "redirects": [
+    {
+      "source": "/wp-admin",
+      "destination": "https://cms.healthykitchennepal.xyz/wp-admin",
+      "permanent": false
+    },
+    {
+      "source": "/wp-admin/:path*",
+      "destination": "https://cms.healthykitchennepal.xyz/wp-admin/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/wp-login.php",
+      "destination": "https://cms.healthykitchennepal.xyz/wp-login.php",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/wp-content/:path*",
