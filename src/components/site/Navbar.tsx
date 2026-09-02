@@ -71,7 +71,7 @@ export function Navbar() {
             )
           ))}
           <Button variant="default" size="default" asChild>
-            <Link to="/blog">Wellness Blog</Link>
+            <Link to="/blog">BLOG</Link>
           </Button>
         </div>
 
