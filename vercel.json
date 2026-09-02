@@ -24,6 +24,10 @@
       "destination": "https://cms.healthykitchennepal.xyz/wp-content/:path*"
     },
     {
+      "source": "/wp-includes/:path*",
+      "destination": "https://cms.healthykitchennepal.xyz/wp-includes/:path*"
+    },
+    {
       "source": "/wp-json/:path*",
       "destination": "https://cms.healthykitchennepal.xyz/wp-json/:path*"
     }
