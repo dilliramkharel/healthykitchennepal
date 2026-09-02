@@ -1,4 +1,5 @@
 import { ArrowRight, Sprout, HeartPulse, Apple } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-thali.jpg";
 
@@ -10,50 +11,55 @@ const stats = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative isolate overflow-hidden">
+    <section id="top" className="relative isolate mt-[72px] min-h-[calc(85vh-72px)] lg:h-[calc(88vh-72px)] lg:max-h-[720px] flex items-center overflow-hidden">
+      {/* Background Image: Crisp, clear, and sharp without blurry fog */}
       <img
         src={heroImage}
         alt="Traditional Nepali thali with organic grains, buttermilk and Himalayan apples"
         width={1600}
         height={1104}
-        className="absolute inset-0 -z-20 size-full object-cover"
+        className="absolute inset-0 -z-20 size-full object-cover object-center"
       />
-      <div className="hero-gradient absolute inset-0 -z-10 opacity-25" />
-      <div className="absolute inset-0 -z-10 bg-foreground/35" />
 
+      {/* Clean high-contrast scrim strictly on left for text legibility, keeping food crisp and unblurred on the right */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-black/15" />
 
-
-
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 pt-36 pb-24 lg:px-8 lg:pt-44 lg:pb-32">
+      <div className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-7 px-5 py-12 sm:py-16 lg:px-8 lg:py-12">
         <div className="max-w-3xl">
-          <p className="eyebrow text-secondary-foreground/90">
+          <div className="inline-flex items-center gap-2 rounded-full border border-secondary/50 bg-black/40 px-3.5 py-1 text-xs font-semibold tracking-wider text-secondary uppercase backdrop-blur-md">
+            <span className="size-1.5 rounded-full bg-secondary animate-pulse" />
             Organic wellness hub · Kathmandu
-          </p>
-          <h1 className="mt-4 text-4xl leading-[1.08] font-bold text-primary-foreground sm:text-5xl lg:text-6xl">
+          </div>
+
+          <h1 className="mt-4 text-3xl leading-[1.12] font-bold text-white sm:text-4xl md:text-5xl lg:text-[3.25rem] tracking-tight drop-shadow-md">
             Discover the Healing Power of Traditional Nepali Kitchens.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-primary-foreground/85">
-            Your ultimate guide to organic farming, kitchen detoxes, and natural weight loss.
+
+          <p className="mt-4 max-w-2xl text-base sm:text-lg text-white/90 leading-relaxed drop-shadow-sm">
+            Your ultimate guide to organic farming, kitchen detoxes, and natural weight loss rooted in ancestral Himalayan wisdom.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button variant="hero" size="xl" asChild>
-              <a href="#detox">
+
+          <div className="mt-7 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+            <Button variant="hero" size="lg" asChild>
+              <a href="#detox" className="gap-2">
                 Explore the Kitchen Detox Guide <ArrowRight className="size-4" />
               </a>
             </Button>
-            <Button variant="heroOutline" size="xl" asChild>
-              <a href="#community">Join the Community</a>
+            <Button variant="heroOutline" size="lg" asChild>
+              <Link to="/blog">Explore Wellness Blog</Link>
             </Button>
           </div>
         </div>
 
-        <ul className="flex flex-wrap gap-3">
+        {/* Highlight Pills */}
+        <ul className="flex flex-wrap gap-2.5 pt-1">
           {stats.map((s) => (
             <li
               key={s.label}
-              className="flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground backdrop-blur-sm"
+              className="flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-white backdrop-blur-md shadow-sm transition-transform hover:scale-105"
             >
-              <s.icon className="size-4" />
+              <s.icon className="size-4 text-secondary" />
               {s.label}
             </li>
           ))}

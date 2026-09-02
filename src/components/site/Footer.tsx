@@ -1,22 +1,23 @@
 import { Facebook, Instagram, Leaf, Mail, Youtube } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const groups = [
   {
     title: "Explore",
     links: [
-      { label: "Featured Guides", href: "#guides" },
-      { label: "Kitchen Detox", href: "#detox" },
-      { label: "Community Voices", href: "#community" },
-      { label: "Newsletter", href: "#newsletter" },
+      { label: "Featured Guides", href: "/#guides" },
+      { label: "Kitchen Detox", href: "/#detox" },
+      { label: "Himalayan Superfoods", href: "/#superfoods" },
+      { label: "Wellness Blog", href: "/blog" },
     ],
   },
   {
     title: "Topics",
     links: [
-      { label: "Natural Weight Loss", href: "#guides" },
-      { label: "Organic Farming", href: "#guides" },
-      { label: "Traditional Nepali Diet", href: "#guides" },
-      { label: "Himalayan Superfoods", href: "#guides" },
+      { label: "Natural Weight Loss", href: "/#guides" },
+      { label: "Organic Farming", href: "/#guides" },
+      { label: "Traditional Nepali Diet", href: "/#guides" },
+      { label: "Himalayan Superfoods", href: "/#superfoods" },
     ],
   },
 ];
@@ -34,14 +35,14 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+            <Link to="/" className="inline-flex items-center gap-2.5 group">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-transform group-hover:scale-105">
                 <Leaf className="size-5" />
               </span>
-              <span className="font-[family-name:var(--font-display)] text-lg font-bold">
+              <span className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
                 Healthy Kitchen Nepal
               </span>
-            </div>
+            </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               A health, wellness and organic food hub celebrating traditional Nepali kitchens —
               millet, barley, buttermilk and Himalayan apples.

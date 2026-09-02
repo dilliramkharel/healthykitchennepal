@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { label: "Guides", href: "/#guides" },
   { label: "Detox", href: "/#detox" },
-  { label: "Community", href: "/#community" },
+  { label: "Superfoods", href: "/#superfoods" },
   { label: "Newsletter", href: "/#newsletter" },
   { label: "Blog", href: "/blog", isRoute: true },
 ];
@@ -26,24 +26,24 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "bg-background/85 shadow-soft backdrop-blur-md" : "bg-transparent",
+        "fixed inset-x-0 top-0 z-50 h-[72px] transition-all duration-300",
+        "bg-background/95 backdrop-blur-md border-b border-border/50 shadow-xs",
       )}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <a href="#top" className="flex items-center gap-2.5">
-          <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+      <nav className="mx-auto flex max-w-7xl h-full items-center justify-between px-5 lg:px-8">
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs transition-transform group-hover:scale-105">
             <Leaf className="size-5" />
           </span>
           <span className="leading-tight">
-            <span className="block font-[family-name:var(--font-display)] text-base font-bold">
+            <span className="block font-[family-name:var(--font-display)] text-base font-bold text-foreground">
               Healthy Kitchen
             </span>
             <span className="block text-[0.7rem] tracking-[0.22em] text-muted-foreground uppercase">
               Nepal
             </span>
           </span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -51,10 +51,7 @@ export function Navbar() {
               <Link
                 key={l.label}
                 to={l.href}
-                className={cn(
-                  "relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full",
-                  scrolled ? "text-foreground hover:text-primary" : "text-primary-foreground/90",
-                )}
+                className="relative text-sm font-medium text-foreground/85 transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full"
               >
                 {l.label}
               </Link>
@@ -62,17 +59,14 @@ export function Navbar() {
               <a
                 key={l.label}
                 href={l.href}
-                className={cn(
-                  "relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full",
-                  scrolled ? "text-foreground hover:text-primary" : "text-primary-foreground/90",
-                )}
+                className="relative text-sm font-medium text-foreground/85 transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full"
               >
                 {l.label}
               </a>
             )
           ))}
-          <Button variant={scrolled ? "default" : "heroOutline"} size="default" asChild>
-            <a href="#community">Join the Community</a>
+          <Button variant="default" size="default" asChild>
+            <Link to="/blog">Wellness Blog</Link>
           </Button>
         </div>
 
@@ -80,10 +74,7 @@ export function Navbar() {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className={cn(
-            "md:hidden",
-            scrolled ? "text-foreground" : "text-primary-foreground",
-          )}
+          className="md:hidden text-foreground"
         >
           {open ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>
