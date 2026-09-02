@@ -1,8 +1,28 @@
+import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchPosts } from '@/lib/wordpress';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
+import defaultFoodImage from "@/assets/hero-thali.jpg";
+
+function BlogCardImage({ src, alt }: { src?: string; alt: string }) {
+  const [imgSrc, setImgSrc] = useState(src || defaultFoodImage);
+
+  return (
+    <img
+      src={imgSrc}
+      alt={alt}
+      onError={() => {
+        if (imgSrc !== defaultFoodImage) {
+          setImgSrc(defaultFoodImage);
+        }
+      }}
+      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  );
+}
 
 export function WordPressPosts() {
   const { data: posts, error } = useSuspenseQuery({
@@ -33,25 +53,22 @@ export function WordPressPosts() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => {
-        const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-        
+        const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || defaultFoodImage;
+        const cleanTitle = post.title.rendered.replace(/[\ufffc\ufffd]/g, '').trim();
+
         return (
           <Card key={post.id} className="flex flex-col h-full overflow-hidden hover:shadow-lg transition-all duration-300 group border-border/50">
-            {featuredImage && (
-              <div className="w-full h-48 overflow-hidden bg-muted">
-                <img 
-                  src={featuredImage} 
-                  alt={post.title.rendered} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-            )}
+            <Link to="/blog/$slug" params={{ slug: post.slug }} className="block w-full h-48 overflow-hidden bg-muted">
+              <BlogCardImage src={featuredImage} alt={cleanTitle} />
+            </Link>
             <CardHeader>
               <div className="text-xs text-muted-foreground mb-2 font-medium">
                 {format(new Date(post.date), 'MMMM dd, yyyy')}
               </div>
               <CardTitle className="line-clamp-2 text-xl leading-tight">
-                <span dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                <Link to="/blog/$slug" params={{ slug: post.slug }} className="hover:text-primary transition-colors">
+                  <span dangerouslySetInnerHTML={{ __html: cleanTitle }} />
+                </Link>
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow text-muted-foreground/80">
@@ -61,13 +78,14 @@ export function WordPressPosts() {
               />
             </CardContent>
             <CardFooter>
-              <a 
-                href={`#`} 
-                className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
+              <Link 
+                to="/blog/$slug" 
+                params={{ slug: post.slug }}
+                className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1 group/link"
               >
                 Read more
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 transition-transform group-hover/link:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </Link>
             </CardFooter>
           </Card>
         );

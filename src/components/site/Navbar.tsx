@@ -4,7 +4,13 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const links = [
+interface NavLink {
+  label: string;
+  href: string;
+  isRoute?: boolean;
+}
+
+const links: NavLink[] = [
   { label: "Guides", href: "/#guides" },
   { label: "Detox", href: "/#detox" },
   { label: "Superfoods", href: "/#superfoods" },
