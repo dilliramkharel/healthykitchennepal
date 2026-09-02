@@ -9,7 +9,6 @@ const links = [
   { label: "Detox", href: "/#detox" },
   { label: "Superfoods", href: "/#superfoods" },
   { label: "Newsletter", href: "/#newsletter" },
-  { label: "Blog", href: "/blog", isRoute: true },
 ];
 
 export function Navbar() {
