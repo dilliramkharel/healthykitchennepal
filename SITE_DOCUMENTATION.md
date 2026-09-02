@@ -141,6 +141,41 @@ The public website is now powered by **React 19** and **TanStack Start (SSR)** h
    ```
 4. Vercel automatically builds and deploys your changes to the live domain in ~45 seconds.
 
+### Situation 2: How the Client or a New Developer Can Update Code with AI (Pair-Programming Guide)
+
+If the client or a future developer wants to modify code, add new pages, adjust layouts, or pair-program with an AI assistant (such as **Google Antigravity**, **Cursor**, or **VS Code**), follow these 4 steps:
+
+#### Step 1: Install Free Prerequisites
+- **Node.js**: Download and install LTS from [nodejs.org](https://nodejs.org).
+- **Git**: Download and install from [git-scm.com](https://git-scm.com).
+- **Code Editor**: Install an AI-powered code editor (Google Antigravity, Cursor, or VS Code).
+
+#### Step 2: Clone the Project
+Open the terminal and run:
+```bash
+git clone https://github.com/dilliramkharel/healthykitchennepal.git
+cd healthykitchennepal
+npm install
+```
+
+#### Step 3: Run the Local Development Server
+```bash
+npm run dev
+```
+- Open `http://localhost:8080` in the browser to view live preview.
+- Ask the AI assistant to adjust styling, create new components, or update content.
+- Changes reflect instantly with Hot Module Replacement (HMR).
+
+#### Step 4: Publish Changes Live Worldwide
+When ready to push updates to the live site:
+```bash
+git add .
+git commit -m "Describe your update (e.g., Update banner and colors)"
+git push origin main
+```
+- **Automated Delivery**: GitHub immediately notifies Vercel.
+- Within **45 seconds**, Vercel rebuilds and deploys the new code live to **`https://www.healthykitchennepal.xyz`**!
+
 ---
 
 ## 🔒 Security & Cost Overview
@@ -153,3 +188,4 @@ The public website is now powered by **React 19** and **TanStack Start (SSR)** h
 
 *Documentation generated for Healthy Kitchen Nepal.*  
 *Last updated: September 2026*
+
