@@ -30,23 +30,43 @@ export interface WordPressPost {
   link: string;
 }
 
-const WP_API_URL = import.meta.env["VITE_WP_API_URL"] || 'https://healthykitchennepal.xyz/wp-json/wp/v2';
+const WP_API_URL = import.meta.env["VITE_WP_API_URL"] || 'https://cms.healthykitchennepal.xyz/wp-json/wp/v2';
+
+function fixMediaUrls(post: WordPressPost): WordPressPost {
+  const json = JSON.stringify(post);
+  const fixed = json.replaceAll(
+    'https://healthykitchennepal.xyz/wp-content/',
+    'https://cms.healthykitchennepal.xyz/wp-content/'
+  );
+  return JSON.parse(fixed);
+}
 
 export const fetchPosts = async (): Promise<WordPressPost[]> => {
-  const response = await fetch(`${WP_API_URL}/posts?per_page=100&_embed`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch posts from WordPress');
+  try {
+    const response = await fetch(`${WP_API_URL}/posts?per_page=100&_embed`);
+    if (!response.ok) {
+      return [];
+    }
+    const posts: WordPressPost[] = await response.json();
+    return posts.map(fixMediaUrls);
+  } catch (err) {
+    console.error('Error fetching posts:', err);
+    return [];
   }
-  return response.json();
 };
 
 export const fetchPostBySlug = async (slug: string): Promise<WordPressPost | null> => {
-  const response = await fetch(`${WP_API_URL}/posts?slug=${encodeURIComponent(slug)}&_embed`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch post from WordPress');
+  try {
+    const response = await fetch(`${WP_API_URL}/posts?slug=${encodeURIComponent(slug)}&_embed`);
+    if (!response.ok) {
+      return null;
+    }
+    const posts: WordPressPost[] = await response.json();
+    const post = posts[0] ?? null;
+    return post ? fixMediaUrls(post) : null;
+  } catch (err) {
+    console.error('Error fetching post by slug:', err);
+    return null;
   }
-  const posts: WordPressPost[] = await response.json();
-  return posts[0] ?? null;
-
 };
 
