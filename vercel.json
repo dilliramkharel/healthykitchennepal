@@ -2,6 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "tanstack-start",
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "healthykitchennepal.xyz" }],
+      "destination": "https://www.healthykitchennepal.xyz/:path*",
+      "statusCode": 301
+    },
     { "source": "/essential-nepali-spices/", "destination": "/blog/essential-nepali-spices", "statusCode": 301 },
     { "source": "/traditional-nepali-drinks-for-health/", "destination": "/blog/traditional-nepali-drinks-for-health", "statusCode": 301 },
     { "source": "/moringa-benefits/", "destination": "/blog/moringa-benefits", "statusCode": 301 },
