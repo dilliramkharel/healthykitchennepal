@@ -2,12 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "tanstack-start",
   "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "healthykitchennepal.xyz" }],
-      "destination": "https://www.healthykitchennepal.xyz/:path*",
-      "statusCode": 301
-    },
     { "source": "/essential-nepali-spices/", "destination": "/blog/essential-nepali-spices", "statusCode": 301 },
     { "source": "/traditional-nepali-drinks-for-health/", "destination": "/blog/traditional-nepali-drinks-for-health", "statusCode": 301 },
     { "source": "/moringa-benefits/", "destination": "/blog/moringa-benefits", "statusCode": 301 },
@@ -36,6 +30,12 @@
     { "source": "/category/organic-farming", "destination": "/guides/organic-farming-farm-to-thali", "permanent": true },
     { "source": "/नेपालका-सुपरफुडहरू-जौ-र-क", "destination": "/guides/weight-loss-barley-millet", "permanent": true },
     { "source": "/nepali-kitchen-detox-guide", "destination": "/blog/nepali-kitchen-detox-guide", "permanent": true },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "healthykitchennepal.xyz" }],
+      "destination": "https://www.healthykitchennepal.xyz/:path*",
+      "statusCode": 301
+    },
     {
       "source": "/wp-admin",
       "destination": "https://cms.healthykitchennepal.xyz/wp-admin",
