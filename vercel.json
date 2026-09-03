@@ -20,10 +20,6 @@
   ],
   "rewrites": [
     {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
-    },
-    {
       "source": "/wp-content/:path*",
       "destination": "https://cms.healthykitchennepal.xyz/wp-content/:path*"
     },
