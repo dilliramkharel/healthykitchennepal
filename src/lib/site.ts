@@ -1,4 +1,4 @@
-export const SITE_URL = "https://healthykitchennepal.com";
+export const SITE_URL = "https://www.healthykitchennepal.xyz";
 
 export function absoluteUrl(path = "/"): string {
   return new URL(path, SITE_URL).toString();

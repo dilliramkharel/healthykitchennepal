@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://healthykitchennepal.com/sitemap.xml
+Sitemap: https://www.healthykitchennepal.xyz/sitemap.xml
