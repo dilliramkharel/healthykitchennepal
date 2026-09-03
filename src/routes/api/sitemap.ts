@@ -4,15 +4,7 @@ import { guides } from "@/components/site/Guides";
 import { SITE_URL } from "@/lib/site";
 import { fetchPosts } from "@/lib/wordpress";
 
-const staticPages = [
-  "",
-  "/about",
-  "/blog",
-  "/contact",
-  "/disclaimer",
-  "/privacy-policy",
-  "/terms",
-];
+const staticPages = ["", "/about", "/blog", "/contact", "/disclaimer", "/privacy-policy", "/terms"];
 
 function xmlEscape(value: string): string {
   return value.replace(/[<>&'\"]/g, (character) => ({
@@ -24,7 +16,7 @@ function xmlEscape(value: string): string {
   })[character] ?? character);
 }
 
-export const APIRoute = createAPIFileRoute("/sitemap.xml")({
+export const APIRoute = createAPIFileRoute("/api/sitemap")({
   GET: async () => {
     const posts = await fetchPosts();
     const urls = [
