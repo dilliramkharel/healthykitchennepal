@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { absoluteUrl } from "@/lib/site";
 import { Shield, Lock, Eye, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/privacy-policy")({
@@ -15,6 +16,7 @@ export const Route = createFileRoute("/privacy-policy")({
       { property: "og:title", content: "Privacy Policy | Healthy Kitchen Nepal" },
       { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/privacy-policy") }],
   }),
   component: PrivacyPolicyPage,
 });

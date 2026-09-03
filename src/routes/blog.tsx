@@ -3,6 +3,7 @@ import { WordPressPosts } from '@/components/WordPressPosts'
 import { Navbar } from "@/components/site/Navbar"
 import { Footer } from "@/components/site/Footer"
 import { fetchPosts } from '@/lib/wordpress'
+import { absoluteUrl } from "@/lib/site"
 
 export const Route = createFileRoute('/blog')({
   loader: async ({ context: { queryClient } }) => {
@@ -17,7 +18,8 @@ export const Route = createFileRoute('/blog')({
       { name: "description", content: "Discover the latest insights on healthy eating, natural detox, and traditional Nepali wellness straight from our experts." },
       { property: "og:title", content: "Wellness Blog | Healthy Kitchen Nepal" },
       { property: "og:description", content: "Discover the latest insights on healthy eating, natural detox, and traditional Nepali wellness straight from our experts." }
-    ]
+    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/blog") }],
   }),
   component: BlogPage,
 })

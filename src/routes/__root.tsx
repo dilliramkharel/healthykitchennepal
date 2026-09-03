@@ -10,7 +10,9 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import heroImage from "@/assets/hero-thali.jpg";
 import { Toaster } from "@/components/ui/sonner";
+import { SITE_URL } from "@/lib/site";
 
 
 function NotFoundComponent() {
@@ -89,6 +91,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Traditional Nepali diets, kitchen detoxes, natural weight loss and organic farming guides.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Healthy Kitchen Nepal" },
+      { property: "og:image", content: `${SITE_URL}${heroImage}` },
+      { property: "og:image:alt", content: "A wholesome Nepali meal from Healthy Kitchen Nepal" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

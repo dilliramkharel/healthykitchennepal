@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { absoluteUrl } from "@/lib/site";
 import { Sprout, Heart, BookOpen, Users, Compass, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
@@ -15,6 +16,7 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About Us | Healthy Kitchen Nepal" },
       { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/about") }],
   }),
   component: AboutPage,
 });

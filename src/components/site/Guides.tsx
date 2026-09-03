@@ -1,12 +1,14 @@
 import { ArrowRight, Clock } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import detox from "@/assets/guide-detox.jpg";
 import grains from "@/assets/guide-grains.jpg";
 import mohi from "@/assets/guide-mohi.jpg";
 import farm from "@/assets/guide-farm.jpg";
 
-const guides = [
+export const guides = [
   {
+    slug: "kitchen-detox-guide",
     title: "The Ultimate Kitchen Detox Guide",
     excerpt:
       "Cleanse your body using what already sits in your Nepali kitchen — jimbu, turmeric, warm water and seasonal greens.",
@@ -15,6 +17,7 @@ const guides = [
     read: "8 min read",
   },
   {
+    slug: "weight-loss-barley-millet",
     title: "Weight Loss with Barley and Millet (जौ र कोदो)",
     excerpt:
       "Why these ancient hill grains keep you full longer, steady your blood sugar and quietly melt stubborn weight.",
@@ -23,6 +26,7 @@ const guides = [
     read: "6 min read",
   },
   {
+    slug: "traditional-mohi-benefits",
     title: "The Health Benefits of Traditional Mohi (Buttermilk)",
     excerpt:
       "A daily glass of freshly churned mohi cools the gut, aids digestion and delivers natural probiotics.",
@@ -31,6 +35,7 @@ const guides = [
     read: "5 min read",
   },
   {
+    slug: "organic-farming-farm-to-thali",
     title: "Organic Farming: From Farm to Thali",
     excerpt:
       "Follow terraced Himalayan farms through compost, seed saving and harvest to the plate you eat from tonight.",
@@ -83,9 +88,9 @@ export function Guides() {
                   {g.excerpt}
                 </p>
                 <Button variant="soft" size="sm" className="mt-5 self-start" asChild>
-                  <a href="#newsletter">
+                  <Link to="/guides/$slug" params={{ slug: g.slug }}>
                     Read More <ArrowRight className="size-3.5" />
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </article>

@@ -36,7 +36,7 @@ export function WordPressPosts() {
     return (
       <div className="text-center p-8 text-red-500 bg-red-50 rounded-lg border border-red-200">
         <h3 className="text-lg font-semibold mb-2">Error Loading Posts</h3>
-        <p>Could not connect to the WordPress backend. Ensure it is running at <strong>http://localhost/wordpress</strong> and has REST API enabled.</p>
+        <p>We could not load articles right now. Please try again shortly.</p>
       </div>
     );
   }

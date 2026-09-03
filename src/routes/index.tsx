@@ -5,6 +5,7 @@ import { Guides } from "@/components/site/Guides";
 import { Superfoods } from "@/components/site/Superfoods";
 import { Newsletter } from "@/components/site/Newsletter";
 import { Footer } from "@/components/site/Footer";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,6 +23,7 @@ export const Route = createFileRoute("/")({
           "Guides on kitchen detoxes, natural weight loss and organic farming rooted in traditional Nepali diets.",
       },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: Index,
 });

@@ -30,14 +30,16 @@ export interface WordPressPost {
   link: string;
 }
 
-const WP_API_URL = import.meta.env["VITE_WP_API_URL"] || 'https://cms.healthykitchennepal.xyz/wp-json/wp/v2';
+const WP_API_URL = import.meta.env["VITE_WP_API_URL"] || "https://cms.healthykitchennepal.xyz/wp-json/wp/v2";
+
+const legacyMediaHosts = /https?:\/\/(?:www\.)?(?:healthykitchennepal\.xyz|healthykitchennepal\.com)\/wp-content\//gi;
 
 function fixMediaUrls(post: WordPressPost): WordPressPost {
   const json = JSON.stringify(post);
-  const fixed = json.replaceAll(
-    'https://healthykitchennepal.xyz/wp-content/',
-    'https://cms.healthykitchennepal.xyz/wp-content/'
-  );
+  // The old WordPress domain is still present in some post bodies and image metadata.
+  // Point every media request at the HTTPS CMS origin so crawlers do not encounter
+  // HTTP links, redirects, or broken legacy image URLs.
+  const fixed = json.replace(legacyMediaHosts, "https://cms.healthykitchennepal.xyz/wp-content/");
   return JSON.parse(fixed);
 }
 

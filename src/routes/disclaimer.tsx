@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { absoluteUrl } from "@/lib/site";
 import { AlertTriangle, HeartPulse, ShieldAlert, Stethoscope } from "lucide-react";
 
 export const Route = createFileRoute("/disclaimer")({
@@ -15,6 +16,7 @@ export const Route = createFileRoute("/disclaimer")({
       { property: "og:title", content: "Health & Nutrition Disclaimer | Healthy Kitchen Nepal" },
       { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/disclaimer") }],
   }),
   component: DisclaimerPage,
 });

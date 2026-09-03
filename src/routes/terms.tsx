@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { absoluteUrl } from "@/lib/site";
 import { FileText, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/terms")({
@@ -15,6 +16,7 @@ export const Route = createFileRoute("/terms")({
       { property: "og:title", content: "Terms of Service | Healthy Kitchen Nepal" },
       { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/terms") }],
   }),
   component: TermsPage,
 });

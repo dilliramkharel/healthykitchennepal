@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute, Link, notFound } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import defaultFoodImage from "@/assets/hero-thali.jpg";
 import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { absoluteUrl, seoDescription, seoTitle } from "@/lib/site";
 
 function BlogDetailImage({ src, alt }: { src: string; alt: string }) {
   const [imgSrc, setImgSrc] = useState(src);
@@ -28,22 +29,33 @@ function BlogDetailImage({ src, alt }: { src: string; alt: string }) {
 
 export const Route = createFileRoute('/blog_/$slug')({
   loader: async ({ params: { slug }, context }) => {
-    if (context?.queryClient) {
-      return context.queryClient.ensureQueryData({
+    const post = context?.queryClient
+      ? await context.queryClient.ensureQueryData({
         queryKey: ['wordpress-post', slug],
         queryFn: () => fetchPostBySlug(slug),
-      });
-    }
-    return fetchPostBySlug(slug);
+      })
+      : await fetchPostBySlug(slug);
+
+    if (!post) throw notFound();
+    return post;
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     const post = loaderData;
-    const title = post?.title?.rendered ? `${post.title.rendered.replace(/[\ufffc\ufffd]/g, '').trim()} | Healthy Kitchen Nepal` : 'Blog Post | Healthy Kitchen Nepal';
+    const cleanTitle = post?.title?.rendered?.replace(/[\ufffc\ufffd]/g, "").trim() ?? "Healthy Kitchen Nepal";
+    const description = seoDescription(post?.excerpt?.rendered ?? "Traditional Nepali wellness guidance from Healthy Kitchen Nepal.");
+    const image = post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
     return {
       meta: [
-        { title },
-        { name: "description", content: post?.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim() || '' },
+        { title: seoTitle(cleanTitle) },
+        { name: "description", content: description },
+        { property: "og:title", content: cleanTitle },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: absoluteUrl(`/blog/${params.slug}`) },
+        ...(image ? [{ property: "og:image", content: image }, { property: "og:image:alt", content: cleanTitle }] : []),
+        { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/blog/${params.slug}`) }],
     };
   },
   component: BlogPostDetail,
