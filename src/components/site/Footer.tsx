@@ -8,6 +8,7 @@ const groups = [
       { label: "Featured Guides", href: "/#guides", isRoute: false },
       { label: "Kitchen Detox", href: "/#detox", isRoute: false },
       { label: "Himalayan Superfoods", href: "/#superfoods", isRoute: false },
+      { label: "Health Calculator", href: "/health-calculator", isRoute: true },
       { label: "Wellness Blog", href: "/blog", isRoute: true },
     ],
   },
