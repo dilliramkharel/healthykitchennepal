@@ -139,6 +139,19 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Healthy Kitchen Nepal",
+            url: SITE_URL,
+            logo: `${SITE_URL}/favicon.png`,
+            description: "Traditional Nepali food, wellness and organic-farming guidance.",
+          }),
+        }}
+      />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster />

@@ -20,7 +20,12 @@ function xmlEscape(value: string): string {
 }
 
 export async function createSitemapResponse(): Promise<Response> {
-  const posts = await fetchPosts();
+  let posts: Awaited<ReturnType<typeof fetchPosts>> = [];
+  try {
+    posts = await fetchPosts();
+  } catch (error) {
+    console.error("Could not include WordPress posts in sitemap:", error);
+  }
   const urls = [
     ...staticPages.map((path) => ({ loc: `${SITE_URL}${path}`, lastmod: undefined })),
     ...guideSlugs.map((slug) => ({ loc: `${SITE_URL}/guides/${slug}`, lastmod: undefined })),

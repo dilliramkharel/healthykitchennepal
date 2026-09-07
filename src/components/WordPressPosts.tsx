@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { fetchPosts } from '@/lib/wordpress';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import defaultFoodImage from "@/assets/hero-thali.jpg";
+import { sanitizeWordPressHtml } from "@/lib/sanitize";
+import { plainText } from "@/lib/site";
 
 function BlogCardImage({ src, alt }: { src?: string; alt: string }) {
   const [imgSrc, setImgSrc] = useState(src || defaultFoodImage);
@@ -25,12 +27,25 @@ function BlogCardImage({ src, alt }: { src?: string; alt: string }) {
 }
 
 export function WordPressPosts() {
-  const { data: posts, error } = useSuspenseQuery({
+  const { data: posts, error, isLoading } = useQuery({
     queryKey: ['wordpress-posts'],
     queryFn: fetchPosts,
   });
 
-  // Skeleton loading is handled via Suspense in SSR
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((item) => (
+          <div key={item} className="overflow-hidden rounded-2xl border border-border/60 bg-card p-5">
+            <Skeleton className="h-48 w-full rounded-xl" />
+            <Skeleton className="mt-5 h-4 w-24" />
+            <Skeleton className="mt-3 h-7 w-full" />
+            <Skeleton className="mt-2 h-4 w-4/5" />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   if (error) {
     return (
@@ -54,7 +69,7 @@ export function WordPressPosts() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => {
         const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || defaultFoodImage;
-        const cleanTitle = post.title.rendered.replace(/[\ufffc\ufffd]/g, '').trim();
+        const cleanTitle = plainText(post.title.rendered.replace(/[\ufffc\ufffd]/g, ""));
 
         return (
           <Card key={post.id} className="flex flex-col h-full overflow-hidden hover:shadow-lg transition-all duration-300 group border-border/50">
@@ -67,14 +82,14 @@ export function WordPressPosts() {
               </div>
               <CardTitle className="line-clamp-2 text-xl leading-tight">
                 <Link to="/blog/$slug" params={{ slug: post.slug }} className="hover:text-primary transition-colors">
-                  <span dangerouslySetInnerHTML={{ __html: cleanTitle }} />
+                  {cleanTitle}
                 </Link>
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow text-muted-foreground/80">
               <div 
                 className="line-clamp-3 text-sm leading-relaxed [&>p]:mb-0"
-                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} 
+                dangerouslySetInnerHTML={{ __html: sanitizeWordPressHtml(post.excerpt.rendered) }}
               />
             </CardContent>
             <CardFooter>

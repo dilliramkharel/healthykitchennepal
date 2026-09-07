@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { absoluteUrl } from "@/lib/site";
-import { Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Clock, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -24,7 +25,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +35,9 @@ function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    setSubmitted(true);
+    const subject = encodeURIComponent(`[${formData.subject}] ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -84,10 +86,10 @@ function ContactPage() {
                         Email Us
                       </span>
                       <a
-                        href="mailto:contact@healthykitchennepal.com"
+                        href={`mailto:${CONTACT_EMAIL}`}
                         className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
                       >
-                        contact@healthykitchennepal.com
+                        {CONTACT_EMAIL}
                       </a>
                     </div>
                   </div>
@@ -138,32 +140,10 @@ function ContactPage() {
                     Send Us a Message
                   </h2>
                   <p className="text-sm text-muted-foreground mb-6">
-                    Fill out the form below and we will get back to your inbox shortly.
+                    Fill out the form below to prepare an email to our team.
                   </p>
 
-                  {submitted ? (
-                    <div className="rounded-2xl border border-emerald-300 bg-emerald-50 dark:bg-emerald-950/20 p-8 text-center">
-                      <CheckCircle2 className="size-12 text-emerald-600 dark:text-emerald-400 mx-auto mb-3" />
-                      <h3 className="text-lg font-bold text-emerald-900 dark:text-emerald-200">
-                        Thank You for Reaching Out!
-                      </h3>
-                      <p className="mt-2 text-sm text-emerald-800 dark:text-emerald-300 max-w-md mx-auto">
-                        Your message has been received. Our team will review your inquiry and get back to you at <strong>{formData.email}</strong>.
-                      </p>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="mt-6"
-                        onClick={() => {
-                          setSubmitted(false);
-                          setFormData({ name: "", email: "", subject: "General Inquiry", message: "" });
-                        }}
-                      >
-                        Send Another Message
-                      </Button>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                       <div>
                         <label className="block text-xs font-semibold text-foreground/80 mb-1.5 uppercase tracking-wider">
                           Full Name *
@@ -222,11 +202,13 @@ function ContactPage() {
                         />
                       </div>
 
+                      <p className="text-xs text-muted-foreground">
+                        Submitting opens your email app with this message filled in. Please send the email to complete your request.
+                      </p>
                       <Button type="submit" size="lg" className="w-full gap-2">
-                        <Send className="size-4" /> Send Message
+                        <Send className="size-4" /> Continue to Email
                       </Button>
                     </form>
-                  )}
                 </div>
               </div>
 

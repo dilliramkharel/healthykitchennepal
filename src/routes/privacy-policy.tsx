@@ -51,7 +51,7 @@ function PrivacyPolicyPage() {
             <div className="rounded-2xl border border-primary/20 bg-primary-soft/40 p-6">
               <p className="text-sm font-medium text-foreground">
                 At <strong>Healthy Kitchen Nepal</strong> (accessible from{" "}
-                <span className="text-primary font-semibold">healthykitchennepal.com</span>), one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information that is collected and recorded by Healthy Kitchen Nepal and how we use it, in strict adherence to Google AdSense policies, GDPR, and CCPA standards.
+                <span className="text-primary font-semibold">healthykitchennepal.xyz</span>), one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information that is collected and recorded by Healthy Kitchen Nepal and how we use it, in strict adherence to Google AdSense policies, GDPR, and CCPA standards.
               </p>
             </div>
 
@@ -79,7 +79,7 @@ function PrivacyPolicyPage() {
                 2. Google AdSense & DoubleClick DART Cookies
               </h2>
               <p className="text-sm mb-3">
-                Google is one of the third-party vendors on our site. It also uses cookies, known as <strong>DART cookies</strong>, to serve ads to our site visitors based upon their visit to healthykitchennepal.com and other sites on the internet.
+                Google is one of the third-party vendors on our site. It also uses cookies, known as <strong>DART cookies</strong>, to serve ads to our site visitors based upon their visit to healthykitchennepal.xyz and other sites on the internet.
               </p>
               <ul className="list-disc pl-6 space-y-2 text-sm mb-4">
                 <li>

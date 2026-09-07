@@ -27,7 +27,7 @@ function AboutPage() {
       icon: Sprout,
       title: "Ancestral Nutrition",
       description:
-        "We believe the healthiest solutions already exist in traditional Nepali homes: finger millet (kodo), barley (jau), fermented greens, and living probiotics.",
+        "We celebrate traditional Nepali staples such as finger millet (kodo), barley (jau), fermented greens and cultured foods as part of varied, balanced meals.",
     },
     {
       icon: Compass,
@@ -80,7 +80,7 @@ function AboutPage() {
                 In recent decades, urban lifestyle changes have separated many households from the time-tested nutritional wisdom of the Nepali kitchen. Ultra-processed foods, refined oils, and artificial sweeteners have replaced nutrient-dense staples like <em>Kodo</em> (millet), <em>Jau</em> (barley), fresh <em>Mohi</em> (buttermilk), and seasonal wild greens.
               </p>
               <p>
-                At <strong>Healthy Kitchen Nepal</strong>, our mission is simple: to make traditional, organic, and unrefined eating practical, accessible, and delicious for every modern kitchen. We document the biological benefits of indigenous foods, share kitchen detox protocols, and celebrate the smallholder farmers across the hills of Nepal who sustain our soil.
+                At <strong>Healthy Kitchen Nepal</strong>, our mission is simple: to make traditional, organic, and unrefined eating practical, accessible, and delicious for every modern kitchen. We share culturally rooted food guidance, clearly distinguish evidence from tradition, and celebrate the smallholder farmers across the hills of Nepal who sustain our soil.
               </p>
             </div>
 

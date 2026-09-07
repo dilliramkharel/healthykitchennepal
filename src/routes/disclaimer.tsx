@@ -69,7 +69,7 @@ function DisclaimerPage() {
                 1. Not a Substitute for Professional Medical Advice
               </h2>
               <p className="text-sm leading-relaxed mb-3">
-                Never disregard professional medical advice, delay seeking medical attention, or alter your prescribed treatment plans because of something you have read on healthykitchennepal.com.
+                Never disregard professional medical advice, delay seeking medical attention, or alter your prescribed treatment plans because of something you have read on healthykitchennepal.xyz.
               </p>
               <p className="text-sm leading-relaxed">
                 Always consult your physician, qualified doctor, or registered dietitian before making significant changes to your diet, adopting fasting regimens, or introducing concentrated herbs (such as Timur, Jimbu, or raw detox concoctions), especially if you have pre-existing conditions such as diabetes, hypertension, kidney conditions, or pregnancy.

@@ -1,4 +1,5 @@
 export const SITE_URL = "https://www.healthykitchennepal.xyz";
+export const CONTACT_EMAIL = "contact@healthykitchennepal.com";
 
 export function absoluteUrl(path = "/"): string {
   return new URL(path, SITE_URL).toString();
@@ -11,6 +12,16 @@ export function plainText(value: string): string {
     .replace(/&amp;/gi, "&")
     .replace(/&quot;/gi, '"')
     .replace(/&#039;|&apos;/gi, "'")
+    .replace(/&#(x[\da-f]+|\d+);?/gi, (_, entity: string) => {
+      const codePoint = entity.toLowerCase().startsWith("x")
+        ? Number.parseInt(entity.slice(1), 16)
+        : Number.parseInt(entity, 10);
+      try {
+        return Number.isFinite(codePoint) ? String.fromCodePoint(codePoint) : " ";
+      } catch {
+        return " ";
+      }
+    })
     .replace(/\s+/g, " ")
     .trim();
 }

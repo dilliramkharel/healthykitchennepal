@@ -50,7 +50,7 @@ function TermsPage() {
             
             <p className="text-base font-medium text-foreground">
               Welcome to <strong>Healthy Kitchen Nepal</strong>. By accessing or using our website located at{" "}
-              <span className="text-primary font-semibold">healthykitchennepal.com</span>, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.
+              <span className="text-primary font-semibold">healthykitchennepal.xyz</span>, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.
             </p>
 
             <div>
@@ -63,7 +63,7 @@ function TermsPage() {
               <ul className="list-disc pl-6 space-y-2 text-sm">
                 <li>You may view, print, or download snippets for personal, non-commercial use only.</li>
                 <li>Republishing, reproducing, or syndicating entire articles or recipes without prior written permission is strictly prohibited.</li>
-                <li>Excerpts may be quoted provided clear editorial credit and a direct do-follow link to the original article on healthykitchennepal.com are included.</li>
+                <li>Excerpts may be quoted provided clear editorial credit and a direct do-follow link to the original article on healthykitchennepal.xyz are included.</li>
               </ul>
             </div>
 

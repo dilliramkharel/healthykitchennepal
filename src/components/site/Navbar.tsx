@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Leaf, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import siteLogo from "@/assets/healthy-kitchen-nepal-logo.png";
 
 interface NavLink {
   label: string;
@@ -14,6 +15,7 @@ const links: NavLink[] = [
   { label: "Guides", href: "/#guides" },
   { label: "Detox", href: "/#detox" },
   { label: "Superfoods", href: "/#superfoods" },
+  { label: "Calculator", href: "https://cms.healthykitchennepal.xyz/health-calculator/" },
   { label: "Newsletter", href: "/#newsletter" },
 ];
 
@@ -37,17 +39,13 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl h-full items-center justify-between px-5 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs transition-transform group-hover:scale-105">
-            <Leaf className="size-5" />
-          </span>
-          <span className="leading-tight">
-            <span className="block font-[family-name:var(--font-display)] text-base font-bold text-foreground">
-              Healthy Kitchen
-            </span>
-            <span className="block text-[0.7rem] tracking-[0.22em] text-muted-foreground uppercase">
-              Nepal
-            </span>
-          </span>
+          <img
+            src={siteLogo}
+            alt="Healthy Kitchen Nepal"
+            width={2172}
+            height={724}
+            className="h-16 w-auto max-w-70 object-contain"
+          />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -109,6 +107,15 @@ export function Navbar() {
                 )}
               </li>
             ))}
+            <li>
+              <Link
+                to="/blog"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-primary-soft hover:text-primary"
+              >
+                Blog
+              </Link>
+            </li>
           </ul>
         </div>
       )}

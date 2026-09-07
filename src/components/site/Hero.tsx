@@ -21,9 +21,8 @@ export function Hero() {
         className="absolute inset-0 -z-20 size-full object-cover object-center"
       />
 
-      {/* Clean high-contrast scrim strictly on left for text legibility, keeping food crisp and unblurred on the right */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
-      <div className="absolute inset-0 -z-10 bg-black/15" />
+      {/* A lighter left-side scrim keeps the text readable without hiding the food photography. */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/52 via-black/16 to-transparent" />
 
       <div className="mx-auto flex w-full max-w-7xl flex-col justify-center gap-7 px-5 py-12 sm:py-16 lg:px-8 lg:py-12">
         <div className="max-w-3xl">

@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
+import { VillageHighlights } from "@/components/site/VillageHighlights";
 import { Guides } from "@/components/site/Guides";
+import { FounderBanner } from "@/components/site/FounderBanner";
+import { FarmToKitchen } from "@/components/site/FarmToKitchen";
 import { Superfoods } from "@/components/site/Superfoods";
 import { Newsletter } from "@/components/site/Newsletter";
 import { Footer } from "@/components/site/Footer";
@@ -34,7 +37,10 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <VillageHighlights />
         <Guides />
+        <FounderBanner />
+        <FarmToKitchen />
         <Superfoods />
         <Newsletter />
       </main>

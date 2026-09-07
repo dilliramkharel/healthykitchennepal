@@ -9,38 +9,38 @@ import farm from "@/assets/guide-farm.jpg";
 export const guides = [
   {
     slug: "kitchen-detox-guide",
-    title: "The Ultimate Kitchen Detox Guide",
+    title: "Simple Wisdom from the Village Kitchen",
     excerpt:
-      "Cleanse your body using what already sits in your Nepali kitchen — jimbu, turmeric, warm water and seasonal greens.",
+      "Everyday ways to use jimbu, turmeric, warm water and seasonal greens in a familiar Nepali kitchen.",
     image: detox,
-    tag: "Detox",
+    tag: "Kitchen wisdom",
     read: "8 min read",
   },
   {
     slug: "weight-loss-barley-millet",
-    title: "Weight Loss with Barley and Millet (जौ र कोदो)",
+    title: "Barley and Millet from Our Hills",
     excerpt:
-      "Why these ancient hill grains keep you full longer, steady your blood sugar and quietly melt stubborn weight.",
+      "A practical introduction to using traditional hill grains in satisfying everyday meals.",
     image: grains,
-    tag: "Weight loss",
+    tag: "Traditional grains",
     read: "6 min read",
   },
   {
     slug: "traditional-mohi-benefits",
-    title: "The Health Benefits of Traditional Mohi (Buttermilk)",
+    title: "Traditional Mohi for Everyday Meals",
     excerpt:
-      "A daily glass of freshly churned mohi cools the gut, aids digestion and delivers natural probiotics.",
+      "A familiar guide to freshly churned mohi, roasted cumin and simple Nepali lunch traditions.",
     image: mohi,
-    tag: "Nutrition",
+    tag: "Everyday food",
     read: "5 min read",
   },
   {
     slug: "organic-farming-farm-to-thali",
-    title: "Organic Farming: From Farm to Thali",
+    title: "From Our Farm to the Village Kitchen",
     excerpt:
-      "Follow terraced Himalayan farms through compost, seed saving and harvest to the plate you eat from tonight.",
+      "Stories of compost, seed saving, harvest and the path from local farms to the family table.",
     image: farm,
-    tag: "Organic farming",
+    tag: "Farm to kitchen",
     read: "10 min read",
   },
 ];
@@ -50,13 +50,12 @@ export function Guides() {
     <section id="guides" className="scroll-mt-24 bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="max-w-2xl">
-          <p className="eyebrow">Featured guides</p>
+          <p className="eyebrow">From the village kitchen</p>
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-            Traditional wisdom, explained for modern kitchens
+            Familiar food, seasonal ingredients and village wisdom
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Practical, research-backed reads on the ingredients Nepali households have trusted for
-            generations.
+            Simple stories and practical ideas from the foods Nepali households have cooked for generations.
           </p>
         </div>
 

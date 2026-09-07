@@ -7,10 +7,15 @@ import { absoluteUrl } from "@/lib/site"
 
 export const Route = createFileRoute('/blog')({
   loader: async ({ context: { queryClient } }) => {
-    return queryClient.ensureQueryData({
-      queryKey: ['wordpress-posts'],
-      queryFn: fetchPosts,
-    })
+    try {
+      return await queryClient.ensureQueryData({
+        queryKey: ['wordpress-posts'],
+        queryFn: fetchPosts,
+      });
+    } catch {
+      // Keep the page shell available if the remote WordPress API is temporarily unavailable.
+      return [];
+    }
   },
   head: () => ({
     meta: [
