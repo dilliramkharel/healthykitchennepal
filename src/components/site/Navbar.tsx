@@ -15,7 +15,7 @@ const links: NavLink[] = [
   { label: "Guides", href: "/#guides" },
   { label: "Detox", href: "/#detox" },
   { label: "Superfoods", href: "/#superfoods" },
-  { label: "Calculator", href: "https://cms.healthykitchennepal.xyz/health-calculator/" },
+  { label: "Calculator", href: "/health-calculator", isRoute: true },
   { label: "Newsletter", href: "/#newsletter" },
 ];
 
