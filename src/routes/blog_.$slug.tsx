@@ -48,10 +48,9 @@ function removeDuplicateFeaturedImage(content: string, featuredImage?: string): 
 
   // The page already displays the featured image above the article. Remove only the first
   // body image if it is the same photo (WordPress may serve a resized variant).
-  return safeContent
-    .replace(/<figure\b[^>]*>\s*<img\b[^>]*>\s*(?:<figcaption[^>]*>.*?<\/figcaption>\s*)?<\/figure>/is, "")
-    .replace(/<p\b[^>]*>\s*<img\b[^>]*>\s*<\/p>/is, "")
-    .replace(/<img\b[^>]*>/i, "");
+  // Remove the exact image we compared above. Chaining separate replacements for
+  // figure, paragraph, and img can accidentally delete subsequent article images.
+  return safeContent.replace(firstImage[0], "");
 }
 
 export const Route = createFileRoute('/blog_/$slug')({
