@@ -14,7 +14,13 @@ export const Route = createFileRoute("/privacy-policy")({
           "Privacy Policy for Healthy Kitchen Nepal. Learn how we collect, use, and protect your information, including Google AdSense and cookie disclosures.",
       },
       { property: "og:title", content: "Privacy Policy | Healthy Kitchen Nepal" },
+      {
+        property: "og:description",
+        content: "Read how Healthy Kitchen Nepal handles personal information, cookies, and privacy requests.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/privacy-policy") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/privacy-policy") }],
   }),

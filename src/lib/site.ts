@@ -38,7 +38,12 @@ export function seoTitle(title: string): string {
 
 export function seoDescription(description: string): string {
   const cleanDescription = plainText(description);
+  // WordPress excerpts can be only a sentence or a few words. Add useful, on-brand
+  // context so an indexable article never emits an unhelpfully short description.
+  const expandedDescription = cleanDescription.length >= 120
+    ? cleanDescription
+    : `${cleanDescription} Explore practical traditional Nepali food and wellness guidance from Healthy Kitchen Nepal.`;
   const maxLength = 155;
-  if (cleanDescription.length <= maxLength) return cleanDescription;
-  return `${cleanDescription.slice(0, maxLength - 1).trimEnd()}…`;
+  if (expandedDescription.length <= maxLength) return expandedDescription;
+  return `${expandedDescription.slice(0, maxLength - 1).trimEnd()}…`;
 }

@@ -14,7 +14,13 @@ export const Route = createFileRoute("/terms")({
           "Terms and Conditions of Use for Healthy Kitchen Nepal. Understand our content guidelines, copyright, and user obligations.",
       },
       { property: "og:title", content: "Terms of Service | Healthy Kitchen Nepal" },
+      {
+        property: "og:description",
+        content: "Read Healthy Kitchen Nepal's terms of service, content guidelines, copyright, and user obligations.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/terms") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/terms") }],
   }),

@@ -22,7 +22,10 @@ export const Route = createFileRoute('/blog')({
       { title: "Wellness Blog | Healthy Kitchen Nepal" },
       { name: "description", content: "Discover the latest insights on healthy eating, natural detox, and traditional Nepali wellness straight from our experts." },
       { property: "og:title", content: "Wellness Blog | Healthy Kitchen Nepal" },
-      { property: "og:description", content: "Discover the latest insights on healthy eating, natural detox, and traditional Nepali wellness straight from our experts." }
+      { property: "og:description", content: "Discover the latest insights on healthy eating, natural detox, and traditional Nepali wellness straight from our experts." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/blog") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/blog") }],
   }),

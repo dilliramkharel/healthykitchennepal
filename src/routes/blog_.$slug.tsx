@@ -19,6 +19,7 @@ function BlogDetailImage({ src, alt }: { src: string; alt: string }) {
     <img
       src={imgSrc}
       alt={alt}
+      decoding="async"
       onError={() => {
         if (imgSrc !== defaultFoodImage) {
           setImgSrc(defaultFoodImage);
@@ -86,6 +87,8 @@ export const Route = createFileRoute('/blog_/$slug')({
         { property: "og:url", content: absoluteUrl(`/blog/${params.slug}`) },
         ...(image ? [{ property: "og:image", content: image }, { property: "og:image:alt", content: cleanTitle }] : []),
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: cleanTitle },
+        { name: "twitter:description", content: description },
       ],
       links: [{ rel: "canonical", href: absoluteUrl(`/blog/${params.slug}`) }],
     };

@@ -16,6 +16,8 @@ function BlogCardImage({ src, alt }: { src?: string; alt: string }) {
     <img
       src={imgSrc}
       alt={alt}
+      loading="lazy"
+      decoding="async"
       onError={() => {
         if (imgSrc !== defaultFoodImage) {
           setImgSrc(defaultFoodImage);

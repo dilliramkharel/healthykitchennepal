@@ -57,6 +57,9 @@ export const Route = createFileRoute("/guides/$slug")({
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
         ...(guide ? [{ property: "og:image", content: absoluteUrl(guide.image) }, { property: "og:image:alt", content: title }] : []),
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
       ],
       links: [{ rel: "canonical", href: url }],
     };
@@ -78,7 +81,7 @@ function GuideDetail() {
       <Navbar />
       <main className="flex-1">
         <header className="border-b border-border/60 bg-muted/40 pt-32 pb-14 sm:pt-40 sm:pb-16"><div className="mx-auto max-w-4xl px-5 lg:px-8"><a href="/#guides" className="group mb-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" /> Back to all guides</a><span className="block w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{guide.tag}</span><h1 className="mt-4 text-3xl leading-tight font-bold sm:text-4xl md:text-5xl">{guide.title}</h1><div className="mt-5 flex items-center gap-2 text-sm text-muted-foreground"><Clock className="size-4 text-primary" /> {guide.read}</div></div></header>
-        <div className="mx-auto max-w-4xl px-5 lg:px-8 -mt-6 sm:-mt-8"><img src={guide.image} alt={guide.title} className="h-64 w-full rounded-2xl border border-border/60 object-cover shadow-xl sm:h-96" /></div>
+        <div className="mx-auto max-w-4xl px-5 lg:px-8 -mt-6 sm:-mt-8"><img src={guide.image} alt={guide.title} width={1024} height={768} decoding="async" className="h-64 w-full rounded-2xl border border-border/60 object-cover shadow-xl sm:h-96" /></div>
         <article className="mx-auto max-w-3xl px-5 py-12 lg:px-8 md:py-16"><p className="text-lg leading-relaxed text-foreground/85 sm:text-xl">{article.intro}</p>{article.sections.map((section) => <section key={section.title} className="mt-10"><h2 className="text-2xl font-bold sm:text-3xl">{section.title}</h2>{section.text.map((paragraph) => <p key={paragraph} className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{paragraph}</p>)}</section>)}<div className="mt-12 border-t border-border pt-8"><Button variant="outline" asChild><a href="/#guides" className="gap-2"><ArrowLeft className="size-4" /> Back to guides</a></Button></div></article>
       </main>
       <Footer />

@@ -14,7 +14,14 @@ export const Route = createFileRoute("/about")({
           "Learn about Healthy Kitchen Nepal's mission to revive traditional Himalayan food wisdom, promote organic farming, and inspire natural kitchen wellness.",
       },
       { property: "og:title", content: "About Us | Healthy Kitchen Nepal" },
+      {
+        property: "og:description",
+        content:
+          "Learn about Healthy Kitchen Nepal's mission to revive traditional Himalayan food wisdom, promote organic farming, and inspire natural kitchen wellness.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/about") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/about") }],
   }),

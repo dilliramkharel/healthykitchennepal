@@ -25,6 +25,9 @@ export const Route = createFileRoute("/")({
         content:
           "Guides on kitchen detoxes, natural weight loss and organic farming rooted in traditional Nepali diets.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),

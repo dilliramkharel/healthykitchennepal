@@ -1,7 +1,16 @@
 import { SITE_URL } from "@/lib/site";
 import { fetchPosts } from "@/lib/wordpress";
 
-const staticPages = ["", "/about", "/blog", "/contact", "/disclaimer", "/privacy-policy", "/terms"];
+const staticPages = [
+  "",
+  "/about",
+  "/blog",
+  "/contact",
+  "/disclaimer",
+  "/health-calculator",
+  "/privacy-policy",
+  "/terms",
+];
 const guideSlugs = [
   "kitchen-detox-guide",
   "weight-loss-barley-millet",

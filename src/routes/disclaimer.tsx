@@ -14,7 +14,14 @@ export const Route = createFileRoute("/disclaimer")({
           "Important health, nutritional, and medical disclaimer for Healthy Kitchen Nepal. Our traditional wellness guides are for educational purposes only.",
       },
       { property: "og:title", content: "Health & Nutrition Disclaimer | Healthy Kitchen Nepal" },
+      {
+        property: "og:description",
+        content:
+          "Important health, nutritional, and medical disclaimer for Healthy Kitchen Nepal. Our wellness guides are educational only.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/disclaimer") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/disclaimer") }],
   }),

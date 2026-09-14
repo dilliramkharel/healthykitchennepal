@@ -4,32 +4,36 @@ import { Footer } from "@/components/site/Footer";
 import { NutritionHealthCalculator } from "@/components/calculator/NutritionHealthCalculator";
 import { CalculatorExplanations } from "@/components/calculator/CalculatorExplanations";
 import { Leaf, ChevronRight } from "lucide-react";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/health-calculator")({
   head: () => ({
     meta: [
       {
-        title: "पोषण र स्वास्थ्य क्यालकुलेटर - Healthy Kitchen Nepal",
+        title: "Nutrition & Health Calculator | Healthy Kitchen Nepal",
       },
       {
         name: "description",
         content:
-          "तपाईंको दैनिक क्यालोरी, पानीको आवश्यकता र BMI थाहा पाउनुहोस्। Estimate your daily water and calorie needs with Healthy Kitchen Nepal's Nutrition & Health Calculator.",
+          "Estimate daily calorie and water needs, calculate BMI, and explore practical nutrition guidance with Healthy Kitchen Nepal.",
       },
       {
         property: "og:title",
-        content: "पोषण र स्वास्थ्य क्यालकुलेटर - Healthy Kitchen Nepal",
+        content: "Nutrition & Health Calculator | Healthy Kitchen Nepal",
       },
       {
         property: "og:description",
         content:
-          "दैनिक क्यालोरी र पानीको मात्रा थाहा पाउनुहोस्। वैज्ञानिक सूत्रमा आधारित नेपाली पोषण तथा स्वास्थ्य क्यालकुलेटर।",
+          "Calculate daily calorie and water needs, BMI, and practical nutrition guidance.",
       },
       {
         property: "og:type",
         content: "website",
       },
+      { property: "og:url", content: absoluteUrl("/health-calculator") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/health-calculator") }],
   }),
   component: HealthCalculatorPage,
 });

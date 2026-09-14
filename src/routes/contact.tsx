@@ -17,7 +17,14 @@ export const Route = createFileRoute("/contact")({
           "Get in touch with the Healthy Kitchen Nepal team. Send inquiries, recipe questions, editorial feedback, or advertising requests.",
       },
       { property: "og:title", content: "Contact Us | Healthy Kitchen Nepal" },
+      {
+        property: "og:description",
+        content:
+          "Get in touch with the Healthy Kitchen Nepal team for recipe questions, editorial feedback, or partnership inquiries.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/contact") },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
