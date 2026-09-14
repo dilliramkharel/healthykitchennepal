@@ -76,7 +76,9 @@ export const Route = createFileRoute('/blog_/$slug')({
     const post = loaderData;
     const cleanTitle = plainText(post?.title?.rendered?.replace(/[\ufffc\ufffd]/g, "") ?? "Healthy Kitchen Nepal");
     const description = seoDescription(post?.excerpt?.rendered ?? "Traditional Nepali wellness guidance from Healthy Kitchen Nepal.");
-    const image = post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+    const image = post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url
+      ?? firstContentImage(post?.content?.rendered ?? "")
+      ?? absoluteUrl(defaultFoodImage);
     return {
       meta: [
         { title: seoTitle(cleanTitle) },
@@ -85,7 +87,8 @@ export const Route = createFileRoute('/blog_/$slug')({
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: absoluteUrl(`/blog/${params.slug}`) },
-        ...(image ? [{ property: "og:image", content: image }, { property: "og:image:alt", content: cleanTitle }] : []),
+        { property: "og:image", content: image },
+        { property: "og:image:alt", content: cleanTitle },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: cleanTitle },
         { name: "twitter:description", content: description },

@@ -1,11 +1,11 @@
 import { Sprout, Sparkles, Wheat, Droplets, ShieldCheck, HeartPulse, ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import kodoImage from "@/assets/superfood-kodo.png";
-import mohiImage from "@/assets/superfood-mohi.png";
-import jimbuTimurImage from "@/assets/superfood-jimbu-timur.png";
-import gundrukSinkiImage from "@/assets/superfood-gundruk-sinki.png";
-import jauImage from "@/assets/superfood-jau.png";
-import gheeImage from "@/assets/superfood-ghee.png";
+import kodoImage from "@/assets/superfood-kodo.jpg";
+import mohiImage from "@/assets/superfood-mohi.jpg";
+import jimbuTimurImage from "@/assets/superfood-jimbu-timur.jpg";
+import gundrukSinkiImage from "@/assets/superfood-gundruk-sinki.jpg";
+import jauImage from "@/assets/superfood-jau.jpg";
+import gheeImage from "@/assets/superfood-ghee.jpg";
 
 const superfoods = [
   {

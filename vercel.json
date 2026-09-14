@@ -1,6 +1,20 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "tanstack-start",
+  "headers": [
+    {
+      "source": "/blog",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, s-maxage=3600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/blog/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, s-maxage=3600, stale-while-revalidate=86400" }
+      ]
+    }
+  ],
   "redirects": [
     { "source": "/essential-nepali-spices/", "destination": "/blog/essential-nepali-spices", "statusCode": 301 },
     { "source": "/traditional-nepali-drinks-for-health/", "destination": "/blog/traditional-nepali-drinks-for-health", "statusCode": 301 },

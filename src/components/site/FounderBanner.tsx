@@ -1,4 +1,4 @@
-import founderFoodBanner from "@/assets/footer-founder-banner.png";
+import founderFoodBanner from "@/assets/footer-founder-banner.jpg";
 
 /** Brand-story image displayed in the upper-middle of the home page. */
 export function FounderBanner() {

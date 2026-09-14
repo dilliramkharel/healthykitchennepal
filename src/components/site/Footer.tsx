@@ -1,7 +1,7 @@
 import { Facebook, Linkedin, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { CONTACT_EMAIL } from "@/lib/site";
-import footerFounderBanner from "@/assets/footer-founder-banner.png";
+import footerFounderBanner from "@/assets/footer-founder-banner.jpg";
 import siteLogo from "@/assets/healthy-kitchen-nepal-logo.png";
 
 const groups = [
