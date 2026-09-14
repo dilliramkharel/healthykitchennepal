@@ -28,6 +28,16 @@ function xmlEscape(value: string): string {
   })[character] ?? character);
 }
 
+function sitemapSlug(slug: string): string {
+  // WordPress may return a Unicode slug or an already percent-encoded one.
+  // Decode once before encoding so sitemap URLs are always canonical, never %25-encoded.
+  try {
+    return encodeURIComponent(decodeURIComponent(slug));
+  } catch {
+    return encodeURIComponent(slug);
+  }
+}
+
 export async function createSitemapResponse(): Promise<Response> {
   let posts: Awaited<ReturnType<typeof fetchPosts>> = [];
   try {
@@ -39,7 +49,7 @@ export async function createSitemapResponse(): Promise<Response> {
     ...staticPages.map((path) => ({ loc: `${SITE_URL}${path}`, lastmod: undefined })),
     ...guideSlugs.map((slug) => ({ loc: `${SITE_URL}/guides/${slug}`, lastmod: undefined })),
     ...posts.map((post) => ({
-      loc: `${SITE_URL}/blog/${encodeURIComponent(post.slug)}`,
+      loc: `${SITE_URL}/blog/${sitemapSlug(post.slug)}`,
       lastmod: post.date,
     })),
   ];
