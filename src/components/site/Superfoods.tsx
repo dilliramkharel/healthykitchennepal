@@ -89,7 +89,7 @@ export function Superfoods() {
             to="/blog"
             className="inline-flex items-center gap-2 self-start md:self-end text-sm font-semibold text-primary hover:text-primary/80 transition-colors group"
           >
-            Explore village food stories
+            See latest food stories
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>

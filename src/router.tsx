@@ -8,7 +8,10 @@ export const getRouter = () => {
   const router = createRouter({
     routeTree,
     context: { queryClient },
-    scrollRestoration: true,
+    // Every new page should start at its heading. Individual in-page links still
+    // use their hash target, but a previous page's scroll position is never
+    // carried into a different page.
+    scrollRestoration: false,
     defaultPreloadStaleTime: 0,
   });
 

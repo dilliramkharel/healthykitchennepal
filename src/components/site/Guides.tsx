@@ -1,5 +1,4 @@
 import { ArrowRight, Clock } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import detox from "@/assets/guide-detox.jpg";
 import grains from "@/assets/guide-grains.jpg";
@@ -87,9 +86,17 @@ export function Guides() {
                   {g.excerpt}
                 </p>
                 <Button variant="soft" size="sm" className="mt-5 self-start" asChild>
-                  <Link to="/guides/$slug" params={{ slug: g.slug }}>
+                  <a
+                    href={`/guides/${g.slug}`}
+                    onClick={(event) => {
+                      // Use a full navigation here. This keeps the guide cards
+                      // reliable even if the development router is reloading.
+                      event.preventDefault();
+                      window.location.assign(`/guides/${g.slug}`);
+                    }}
+                  >
                     Read More <ArrowRight className="size-3.5" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </article>

@@ -153,7 +153,7 @@ function AboutPage() {
                 to="/blog"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-soft hover:bg-primary/90 transition-colors shrink-0"
               >
-                Read Wellness Blog <ArrowRight className="size-4" />
+                See Latest Articles <ArrowRight className="size-4" />
               </Link>
             </div>
           </div>

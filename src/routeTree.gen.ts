@@ -13,12 +13,18 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DetoxRouteImport } from './routes/detox'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as HealthCalculatorRouteImport } from './routes/health-calculator'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as RecipesRouteImport } from './routes/recipes'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TraditionalFoodsRouteImport } from './routes/traditional-foods'
 import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
+import { Route as RecipesSlugRouteImport } from './routes/recipes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,9 +46,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DetoxRoute = DetoxRouteImport.update({
+  id: '/detox',
+  path: '/detox',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
   id: '/disclaimer',
   path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesRoute = GuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HealthCalculatorRoute = HealthCalculatorRouteImport.update({
@@ -55,9 +71,19 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecipesRoute = RecipesRouteImport.update({
+  id: '/recipes',
+  path: '/recipes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TraditionalFoodsRoute = TraditionalFoodsRouteImport.update({
+  id: '/traditional-foods',
+  path: '/traditional-foods',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -65,10 +91,20 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GuidesRoute,
+} as any)
 const GuidesSlugRoute = GuidesSlugRouteImport.update({
-  id: '/guides/$slug',
-  path: '/guides/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => GuidesRoute,
+} as any)
+const RecipesSlugRoute = RecipesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => RecipesRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -76,24 +112,35 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
+  '/detox': typeof DetoxRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/guides': typeof GuidesRouteWithChildren
   '/health-calculator': typeof HealthCalculatorRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/recipes': typeof RecipesRouteWithChildren
   '/terms': typeof TermsRoute
+  '/traditional-foods': typeof TraditionalFoodsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
+  '/guides/': typeof GuidesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
+  '/detox': typeof DetoxRoute
   '/disclaimer': typeof DisclaimerRoute
   '/health-calculator': typeof HealthCalculatorRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/recipes': typeof RecipesRouteWithChildren
   '/terms': typeof TermsRoute
+  '/traditional-foods': typeof TraditionalFoodsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
+  '/guides': typeof GuidesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -101,12 +148,18 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
+  '/detox': typeof DetoxRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/guides': typeof GuidesRouteWithChildren
   '/health-calculator': typeof HealthCalculatorRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/recipes': typeof RecipesRouteWithChildren
   '/terms': typeof TermsRoute
+  '/traditional-foods': typeof TraditionalFoodsRoute
   '/blog_/$slug': typeof BlogSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/recipes/$slug': typeof RecipesSlugRoute
+  '/guides/': typeof GuidesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -115,36 +168,53 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/contact'
+    | '/detox'
     | '/disclaimer'
+    | '/guides'
     | '/health-calculator'
     | '/privacy-policy'
+    | '/recipes'
     | '/terms'
+    | '/traditional-foods'
     | '/blog/$slug'
     | '/guides/$slug'
+    | '/recipes/$slug'
+    | '/guides/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/blog'
     | '/contact'
+    | '/detox'
     | '/disclaimer'
     | '/health-calculator'
     | '/privacy-policy'
+    | '/recipes'
     | '/terms'
+    | '/traditional-foods'
     | '/blog/$slug'
     | '/guides/$slug'
+    | '/recipes/$slug'
+    | '/guides'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/blog'
     | '/contact'
+    | '/detox'
     | '/disclaimer'
+    | '/guides'
     | '/health-calculator'
     | '/privacy-policy'
+    | '/recipes'
     | '/terms'
+    | '/traditional-foods'
     | '/blog_/$slug'
     | '/guides/$slug'
+    | '/recipes/$slug'
+    | '/guides/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -152,12 +222,15 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
+  DetoxRoute: typeof DetoxRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  GuidesRoute: typeof GuidesRouteWithChildren
   HealthCalculatorRoute: typeof HealthCalculatorRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  RecipesRoute: typeof RecipesRouteWithChildren
   TermsRoute: typeof TermsRoute
+  TraditionalFoodsRoute: typeof TraditionalFoodsRoute
   BlogSlugRoute: typeof BlogSlugRoute
-  GuidesSlugRoute: typeof GuidesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -190,11 +263,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/detox': {
+      id: '/detox'
+      path: '/detox'
+      fullPath: '/detox'
+      preLoaderRoute: typeof DetoxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/disclaimer': {
       id: '/disclaimer'
       path: '/disclaimer'
       fullPath: '/disclaimer'
       preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides': {
+      id: '/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof GuidesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/health-calculator': {
@@ -211,11 +298,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recipes': {
+      id: '/recipes'
+      path: '/recipes'
+      fullPath: '/recipes'
+      preLoaderRoute: typeof RecipesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/traditional-foods': {
+      id: '/traditional-foods'
+      path: '/traditional-foods'
+      fullPath: '/traditional-foods'
+      preLoaderRoute: typeof TraditionalFoodsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog_/$slug': {
@@ -225,27 +326,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guides/': {
+      id: '/guides/'
+      path: '/'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof GuidesRoute
+    }
     '/guides/$slug': {
       id: '/guides/$slug'
-      path: '/guides/$slug'
+      path: '/$slug'
       fullPath: '/guides/$slug'
       preLoaderRoute: typeof GuidesSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof GuidesRoute
+    }
+    '/recipes/$slug': {
+      id: '/recipes/$slug'
+      path: '/$slug'
+      fullPath: '/recipes/$slug'
+      preLoaderRoute: typeof RecipesSlugRouteImport
+      parentRoute: typeof RecipesRoute
     }
   }
 }
+
+interface GuidesRouteChildren {
+  GuidesSlugRoute: typeof GuidesSlugRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
+}
+
+const GuidesRouteChildren: GuidesRouteChildren = {
+  GuidesSlugRoute: GuidesSlugRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
+}
+
+const GuidesRouteWithChildren =
+  GuidesRoute._addFileChildren(GuidesRouteChildren)
+
+interface RecipesRouteChildren {
+  RecipesSlugRoute: typeof RecipesSlugRoute
+}
+
+const RecipesRouteChildren: RecipesRouteChildren = {
+  RecipesSlugRoute: RecipesSlugRoute,
+}
+
+const RecipesRouteWithChildren =
+  RecipesRoute._addFileChildren(RecipesRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
+  DetoxRoute: DetoxRoute,
   DisclaimerRoute: DisclaimerRoute,
+  GuidesRoute: GuidesRouteWithChildren,
   HealthCalculatorRoute: HealthCalculatorRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  RecipesRoute: RecipesRouteWithChildren,
   TermsRoute: TermsRoute,
+  TraditionalFoodsRoute: TraditionalFoodsRoute,
   BlogSlugRoute: BlogSlugRoute,
-  GuidesSlugRoute: GuidesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

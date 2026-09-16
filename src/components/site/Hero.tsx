@@ -46,7 +46,7 @@ export function Hero() {
               </a>
             </Button>
             <Button variant="heroOutline" size="lg" asChild>
-              <Link to="/blog">Explore Wellness Blog</Link>
+              <Link to="/blog">See Latest Articles</Link>
             </Button>
           </div>
         </div>

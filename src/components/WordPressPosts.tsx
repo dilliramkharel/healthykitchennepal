@@ -9,6 +9,26 @@ import defaultFoodImage from "@/assets/hero-thali.jpg";
 import { sanitizeWordPressHtml } from "@/lib/sanitize";
 import { plainText } from "@/lib/site";
 
+export type BlogTopic = "guides" | "detox" | "traditional-foods";
+
+interface WordPressPostsProps {
+  topic?: BlogTopic;
+  limit?: number;
+}
+
+function getPostTopic(post: Awaited<ReturnType<typeof fetchPosts>>[number]): BlogTopic {
+  const categoryText = (post._embedded?.["wp:term"] ?? [])
+    .flat()
+    .filter((term) => term.taxonomy === "category")
+    .map((term) => `${term.name} ${term.slug}`)
+    .join(" ");
+  const text = `${post.title.rendered} ${post.excerpt.rendered} ${categoryText}`.toLowerCase();
+
+  if (/(detox|cleanse|digestion|weight loss|flax|wellness)/.test(text)) return "detox";
+  if (/(recipe|food|spice|grain|oats|lito|nepali|kitchen|breakfast)/.test(text)) return "traditional-foods";
+  return "guides";
+}
+
 function BlogCardImage({ src, alt }: { src?: string; alt: string }) {
   const [imgSrc, setImgSrc] = useState(src || defaultFoodImage);
 
@@ -28,7 +48,7 @@ function BlogCardImage({ src, alt }: { src?: string; alt: string }) {
   );
 }
 
-export function WordPressPosts() {
+export function WordPressPosts({ topic, limit }: WordPressPostsProps) {
   const { data: posts, error, isLoading } = useQuery({
     queryKey: ['wordpress-posts'],
     queryFn: fetchPosts,
@@ -67,9 +87,17 @@ export function WordPressPosts() {
     );
   }
 
+  const visiblePosts = posts
+    .filter((post) => !topic || getPostTopic(post) === topic)
+    .slice(0, limit);
+
+  if (visiblePosts.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {posts.map((post) => {
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {visiblePosts.map((post) => {
         const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || defaultFoodImage;
         const cleanTitle = plainText(post.title.rendered.replace(/[\ufffc\ufffd]/g, ""));
 

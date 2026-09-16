@@ -8,10 +8,11 @@ const groups = [
   {
     title: "Village Kitchen",
     links: [
-      { label: "Kitchen wisdom", href: "/#guides", isRoute: false },
-      { label: "Traditional grains", href: "/#detox", isRoute: false },
-      { label: "Seasonal foods", href: "/#superfoods", isRoute: false },
-      { label: "Recipe stories", href: "/blog", isRoute: true },
+      { label: "Kitchen wisdom", href: "/guides", isRoute: true },
+      { label: "Traditional grains", href: "/guides/weight-loss-barley-millet", isRoute: true },
+      { label: "Seasonal foods", href: "/traditional-foods", isRoute: true },
+      { label: "Recipes", href: "/recipes", isRoute: true },
+      { label: "Latest articles", href: "/blog", isRoute: true },
     ],
   },
   {
@@ -27,10 +28,10 @@ const groups = [
   {
     title: "Our Food Stories",
     links: [
-      { label: "Farm to kitchen", href: "/#guides", isRoute: false },
-      { label: "Organic farming", href: "/#guides", isRoute: false },
-      { label: "Traditional Nepali food", href: "/#guides", isRoute: false },
-      { label: "Seasonal ingredients", href: "/#superfoods", isRoute: false },
+      { label: "Farm to kitchen", href: "/guides/organic-farming-farm-to-thali", isRoute: true },
+      { label: "Organic farming", href: "/guides/organic-farming-farm-to-thali", isRoute: true },
+      { label: "Traditional Nepali food", href: "/guides/traditional-mohi-benefits", isRoute: true },
+      { label: "Seasonal ingredients", href: "/traditional-foods", isRoute: true },
     ],
   },
 ];

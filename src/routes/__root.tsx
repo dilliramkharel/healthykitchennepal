@@ -4,15 +4,17 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import heroImage from "@/assets/hero-thali.jpg";
 import { Toaster } from "@/components/ui/sonner";
 import { SITE_URL } from "@/lib/site";
+import { LanguageProvider } from "@/lib/language";
 
 
 function NotFoundComponent() {
@@ -143,9 +145,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Hash links (for example /#newsletter) intentionally retain their target.
+    // All normal route changes open from the top instead of inheriting a scroll
+    // position from the page the visitor just left.
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   return (
     <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -162,6 +175,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
