@@ -12,6 +12,7 @@ const groups = [
       { label: "Traditional grains", href: "/guides/weight-loss-barley-millet", isRoute: true },
       { label: "Seasonal foods", href: "/traditional-foods", isRoute: true },
       { label: "Recipes", href: "/recipes", isRoute: true },
+      { label: "Health calculator", href: "/health-calculator", isRoute: true },
       { label: "Latest articles", href: "/blog", isRoute: true },
     ],
   },

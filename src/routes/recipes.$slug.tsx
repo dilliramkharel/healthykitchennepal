@@ -4,11 +4,27 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { recipes } from "@/lib/recipes";
 import { useLanguage } from "@/lib/language";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, seoDescription } from "@/lib/site";
 
 export const Route = createFileRoute("/recipes/$slug")({
   beforeLoad: ({ params }) => { if (!recipes.some((recipe) => recipe.slug === params.slug)) throw notFound(); },
-  head: ({ params }) => { const recipe = recipes.find((item) => item.slug === params.slug); return { meta: [{ title: `${recipe?.title.en ?? "Recipe"} | Healthy Kitchen Nepal` }, { name: "description", content: recipe?.description.en ?? "Traditional Nepali recipe." }], links: [{ rel: "canonical", href: absoluteUrl(`/recipes/${params.slug}`) }] }; },
+  head: ({ params }) => {
+    const recipe = recipes.find((item) => item.slug === params.slug);
+    const title = `${recipe?.title.en ?? "Recipe"} | Healthy Kitchen Nepal`;
+    const description = seoDescription(recipe?.description.en ?? "Traditional Nepali recipe with practical ingredients and clear, step-by-step cooking instructions.");
+    const url = absoluteUrl(`/recipes/${params.slug}`);
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+    };
+  },
   component: RecipeDetail,
 });
 

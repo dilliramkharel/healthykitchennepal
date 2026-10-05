@@ -1,16 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Leaf } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Superfoods } from "@/components/site/Superfoods";
 import { WordPressPosts } from "@/components/WordPressPosts";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, seoDescription } from "@/lib/site";
+import { recipes } from "@/lib/recipes";
 
 export const Route = createFileRoute("/traditional-foods")({
   head: () => ({
     meta: [
       { title: "Traditional Nepali Foods | Healthy Kitchen Nepal" },
-      { name: "description", content: "Explore familiar Nepali grains, fermented foods and Himalayan herbs for everyday balanced meals." },
+      { name: "description", content: seoDescription("Explore familiar Nepali grains, fermented foods and Himalayan herbs for everyday balanced meals.") },
       { property: "og:type", content: "website" },
       { property: "og:url", content: absoluteUrl("/traditional-foods") },
     ],
@@ -32,6 +33,14 @@ function TraditionalFoodsPage() {
           </div>
         </section>
         <Superfoods />
+        <section className="border-t border-border/60 py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="max-w-2xl"><p className="eyebrow">Cook at home</p><h2 className="mt-2 text-3xl font-bold">Traditional Nepali recipes</h2><p className="mt-3 text-muted-foreground">Explore simple recipes featuring familiar grains, lentils and cultured foods.</p></div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {recipes.map((recipe) => <Link key={recipe.slug} to="/recipes/$slug" params={{ slug: recipe.slug }} className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40 hover:bg-primary-soft/30"><p className="text-xs font-semibold uppercase tracking-wider text-secondary">{recipe.category}</p><h3 className="mt-2 text-xl font-bold">{recipe.title.en}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{recipe.description.en}</p><span className="mt-4 inline-block text-sm font-semibold text-primary">View recipe →</span></Link>)}
+            </div>
+          </div>
+        </section>
         <section className="py-16 lg:py-20">
           <div className="mx-auto max-w-7xl px-5 lg:px-8"><div className="mb-8"><p className="eyebrow">Food stories</p><h2 className="mt-2 text-3xl font-bold">Recipes and traditional ingredients</h2></div><WordPressPosts topic="traditional-foods" /></div>
         </section>

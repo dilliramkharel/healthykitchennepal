@@ -3,6 +3,12 @@
   "framework": "tanstack-start",
   "headers": [
     {
+      "source": "/oats-benefits-preview.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
       "source": "/blog",
       "headers": [
         { "key": "Cache-Control", "value": "public, s-maxage=3600, stale-while-revalidate=86400" }
@@ -16,6 +22,14 @@
     }
   ],
   "redirects": [
+    { "source": "/traditional-nepali-foods", "destination": "/traditional-foods", "permanent": true },
+    { "source": "/traditional-nepali-foods/", "destination": "/traditional-foods", "permanent": true },
+    { "source": "/nepali-recipes", "destination": "/recipes", "permanent": true },
+    { "source": "/nepali-recipes/", "destination": "/recipes", "permanent": true },
+    { "source": "/nepali-wellness-guides", "destination": "/guides", "permanent": true },
+    { "source": "/nepali-wellness-guides/", "destination": "/guides", "permanent": true },
+    { "source": "/kitchen-detox-wellness", "destination": "/detox", "permanent": true },
+    { "source": "/kitchen-detox-wellness/", "destination": "/detox", "permanent": true },
     { "source": "/essential-nepali-spices/", "destination": "/blog/essential-nepali-spices", "statusCode": 301 },
     { "source": "/traditional-nepali-drinks-for-health/", "destination": "/blog/traditional-nepali-drinks-for-health", "statusCode": 301 },
     { "source": "/moringa-benefits/", "destination": "/blog/moringa-benefits", "statusCode": 301 },

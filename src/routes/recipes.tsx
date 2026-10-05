@@ -5,11 +5,18 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { recipes, type RecipeCategory } from "@/lib/recipes";
 import { useLanguage } from "@/lib/language";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, seoDescription } from "@/lib/site";
 
 export const Route = createFileRoute("/recipes")({
   head: () => ({
-    meta: [{ title: "Nepali Recipes | Healthy Kitchen Nepal" }, { name: "description", content: "Browse simple, wholesome Nepali recipes with ingredients and clear cooking steps." }],
+    meta: [
+      { title: "Nepali Recipes | Healthy Kitchen Nepal" },
+      { name: "description", content: seoDescription("Browse simple, wholesome Nepali recipes with ingredients, clear cooking steps and practical ideas for balanced everyday meals.") },
+      { property: "og:title", content: "Nepali Recipes | Healthy Kitchen Nepal" },
+      { property: "og:description", content: "Browse simple, wholesome Nepali recipes with ingredients, clear cooking steps and practical everyday meal ideas." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: absoluteUrl("/recipes") },
+    ],
     links: [{ rel: "canonical", href: absoluteUrl("/recipes") }],
   }),
   component: RecipesPage,

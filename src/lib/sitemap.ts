@@ -1,15 +1,20 @@
 import { SITE_URL } from "@/lib/site";
 import { fetchPosts } from "@/lib/wordpress";
+import { recipes } from "@/lib/recipes";
 
 const staticPages = [
   "",
   "/about",
   "/blog",
   "/contact",
+  "/detox",
   "/disclaimer",
   "/health-calculator",
   "/privacy-policy",
+  "/recipes",
   "/terms",
+  "/traditional-foods",
+  "/guides",
 ];
 const guideSlugs = [
   "kitchen-detox-guide",
@@ -48,6 +53,7 @@ export async function createSitemapResponse(): Promise<Response> {
   const urls = [
     ...staticPages.map((path) => ({ loc: `${SITE_URL}${path}`, lastmod: undefined })),
     ...guideSlugs.map((slug) => ({ loc: `${SITE_URL}/guides/${slug}`, lastmod: undefined })),
+    ...recipes.map((recipe) => ({ loc: `${SITE_URL}/recipes/${sitemapSlug(recipe.slug)}`, lastmod: undefined })),
     ...posts.map((post) => ({
       loc: `${SITE_URL}/blog/${sitemapSlug(post.slug)}`,
       lastmod: post.date,
