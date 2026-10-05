@@ -24,6 +24,7 @@ import { Route as TraditionalFoodsRouteImport } from './routes/traditional-foods
 import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
+import { Route as RecipesIndexRouteImport } from './routes/recipes.index'
 import { Route as RecipesSlugRouteImport } from './routes/recipes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -101,6 +102,11 @@ const GuidesSlugRoute = GuidesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => GuidesRoute,
 } as any)
+const RecipesIndexRoute = RecipesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RecipesRoute,
+} as any)
 const RecipesSlugRoute = RecipesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/guides/$slug': typeof GuidesSlugRoute
   '/recipes/$slug': typeof RecipesSlugRoute
   '/guides/': typeof GuidesIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,13 +141,13 @@ export interface FileRoutesByTo {
   '/disclaimer': typeof DisclaimerRoute
   '/health-calculator': typeof HealthCalculatorRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
-  '/recipes': typeof RecipesRouteWithChildren
   '/terms': typeof TermsRoute
   '/traditional-foods': typeof TraditionalFoodsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/recipes/$slug': typeof RecipesSlugRoute
   '/guides': typeof GuidesIndexRoute
+  '/recipes': typeof RecipesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -160,6 +167,7 @@ export interface FileRoutesById {
   '/guides/$slug': typeof GuidesSlugRoute
   '/recipes/$slug': typeof RecipesSlugRoute
   '/guides/': typeof GuidesIndexRoute
+  '/recipes/': typeof RecipesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -180,6 +188,7 @@ export interface FileRouteTypes {
     | '/guides/$slug'
     | '/recipes/$slug'
     | '/guides/'
+    | '/recipes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -190,13 +199,13 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/health-calculator'
     | '/privacy-policy'
-    | '/recipes'
     | '/terms'
     | '/traditional-foods'
     | '/blog/$slug'
     | '/guides/$slug'
     | '/recipes/$slug'
     | '/guides'
+    | '/recipes'
   id:
     | '__root__'
     | '/'
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/guides/$slug'
     | '/recipes/$slug'
     | '/guides/'
+    | '/recipes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -340,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuidesSlugRouteImport
       parentRoute: typeof GuidesRoute
     }
+    '/recipes/': {
+      id: '/recipes/'
+      path: '/'
+      fullPath: '/recipes/'
+      preLoaderRoute: typeof RecipesIndexRouteImport
+      parentRoute: typeof RecipesRoute
+    }
     '/recipes/$slug': {
       id: '/recipes/$slug'
       path: '/$slug'
@@ -365,10 +382,12 @@ const GuidesRouteWithChildren =
 
 interface RecipesRouteChildren {
   RecipesSlugRoute: typeof RecipesSlugRoute
+  RecipesIndexRoute: typeof RecipesIndexRoute
 }
 
 const RecipesRouteChildren: RecipesRouteChildren = {
   RecipesSlugRoute: RecipesSlugRoute,
+  RecipesIndexRoute: RecipesIndexRoute,
 }
 
 const RecipesRouteWithChildren =
