@@ -93,7 +93,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Traditional Nepali diets, kitchen detoxes, natural weight loss and organic farming guides.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: absoluteUrl("/") },
       { property: "og:site_name", content: "Healthy Kitchen Nepal" },
       { property: "og:image", content: `${SITE_URL}${heroImage}` },
       { property: "og:image:alt", content: "A wholesome Nepali meal from Healthy Kitchen Nepal" },
