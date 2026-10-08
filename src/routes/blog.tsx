@@ -33,6 +33,7 @@ export const Route = createFileRoute('/blog')({
 })
 
 function BlogPage() {
+  const posts = Route.useLoaderData();
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -56,7 +57,7 @@ function BlogPage() {
             crawlers and visitors can reach the complete collection. */}
         <section className="py-16 md:py-24">
           <div className="mx-auto px-5 lg:px-8 max-w-7xl">
-            <WordPressPosts />
+            <WordPressPosts initialPosts={posts} />
             <div className="mt-14 grid gap-4 border-t border-border/70 pt-10 sm:grid-cols-3">
               <Link to="/guides" className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40 hover:bg-primary-soft/40"><span className="text-xs font-semibold uppercase tracking-wider text-secondary">Explore topic</span><h2 className="mt-2 text-xl font-bold">Guides</h2><p className="mt-1 text-sm text-muted-foreground">Practical kitchen and wellness guidance.</p></Link>
               <Link to="/detox" className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40 hover:bg-primary-soft/40"><span className="text-xs font-semibold uppercase tracking-wider text-secondary">Explore topic</span><h2 className="mt-2 text-xl font-bold">Detox</h2><p className="mt-1 text-sm text-muted-foreground">Gentle habits for digestion and balance.</p></Link>

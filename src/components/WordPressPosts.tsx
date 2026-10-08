@@ -14,6 +14,7 @@ export type BlogTopic = "guides" | "detox" | "traditional-foods";
 interface WordPressPostsProps {
   topic?: BlogTopic;
   limit?: number;
+  initialPosts?: Awaited<ReturnType<typeof fetchPosts>>;
 }
 
 function getPostTopic(post: Awaited<ReturnType<typeof fetchPosts>>[number]): BlogTopic {
@@ -48,10 +49,11 @@ function BlogCardImage({ src, alt }: { src?: string; alt: string }) {
   );
 }
 
-export function WordPressPosts({ topic, limit }: WordPressPostsProps) {
+export function WordPressPosts({ topic, limit, initialPosts }: WordPressPostsProps) {
   const { data: posts, error, isLoading } = useQuery({
     queryKey: ['wordpress-posts'],
     queryFn: fetchPosts,
+    initialData: initialPosts,
   });
 
   if (isLoading) {
